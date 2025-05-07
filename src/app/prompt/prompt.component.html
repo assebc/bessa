@@ -1,0 +1,51 @@
+<ng-container>
+	<div class="container">
+		<div class="w-50">
+			<h1>GPT version</h1>
+			<ng-select
+				#ngSelect
+				class="ng-select-hide-values ng-select-options-sm"
+				placeholder="Select GPT version"
+				[items]="versions"
+				[clearable]="false"
+				[hideSelected]="true"
+				[ngModel]="$gptVersion()"
+				(ngModelChange)="updateGptVersion($event)"
+			/>
+		</div>
+
+		<div class="w-50 flex-column mt-2">
+			<span class="me-2">API Key</span>
+			<input type="text" class="w-100" [ngModel]="$apiKey()" (ngModelChange)="updateAPIKey($event)" />
+		</div>
+
+		<div class="d-flex justify-content-center w-50 mt-4">
+			<button type="button" [disabled]="$apiKey() === '' || $systemPrompt() === '' || $prompt() === ''" (click)="execPrompt()">Try Prompt</button>
+		</div>
+
+		<div class="d-flex align-items-stretch justify-content-between mt-4 vh-100 w-100">
+			<div>
+				<h2>System Prompt</h2>
+				<textarea 
+					class="form-control h-50"
+					[ngModel]="$systemPrompt()"
+					(ngModelChange)="updateSystemPrompt($event)"	
+				></textarea>
+			</div>
+			<div>
+				<h2>Prompt</h2>
+				<textarea 
+					class="form-control h-50"
+					[ngModel]="$prompt()"
+					(ngModelChange)="updatePrompt($event)"	
+				></textarea>
+			</div>
+			<div>
+				<h2>Response</h2>
+				<p class="form-control h-50">{{ $response()}}</p>
+			</div>
+		</div>
+	</div>
+
+	
+</ng-container>

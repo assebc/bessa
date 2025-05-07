@@ -1,21 +1,9 @@
 import { Component } from '@angular/core';
-import { links } from '../../public/links';
-import { CommonModule } from '@angular/common';
-
-interface Link {
-  caption: string;
-  url: string;
-  icon?: string;
-  width?: string;
-}
+import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-root',
-    standalone: true,
-    imports: [CommonModule],
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.scss'
+    imports: [RouterModule],
+    template: '<router-outlet></router-outlet>',
 })
-export class AppComponent {
-  readonly links: Link[] = links;
-}
+export class AppComponent {}
