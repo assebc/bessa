@@ -17,8 +17,8 @@ export class PromptComponent {
 
   readonly $gptVersion = signal<string>(openAiVersions[4]);
   readonly $apiKey = signal<string>('');
-  readonly $systemPrompt = signal<string>('');
   readonly $prompt = signal<string>('');
+  readonly $question = signal<string>('');
   readonly $response = signal<string>('');
 
   updateGptVersion(version: string): void {
@@ -29,12 +29,12 @@ export class PromptComponent {
     this.$apiKey.set(version);
   }
 
-  updateSystemPrompt(text: string): void {
-    this.$systemPrompt.set(text);
-  }
-
   updatePrompt(text: string): void {
     this.$prompt.set(text);
+  }
+
+  updateQuestion(text: string): void {
+    this.$question.set(text);
   }
 
   updateResponse(response: string): void {
@@ -47,8 +47,8 @@ export class PromptComponent {
       const completition = await openAi.chat.completions.create({
         model: this.$gptVersion(),
         messages: [
-          { role: 'system', content: this.$systemPrompt() }, 
-          { role: 'user', content: this.$prompt() }
+          { role: 'system', content: this.$prompt() }, 
+          { role: 'user', content: this.$question() }
         ],
         temperature: 0
       })

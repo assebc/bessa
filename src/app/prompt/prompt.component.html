@@ -20,24 +20,24 @@
 		</div>
 
 		<div class="d-flex justify-content-center w-50 mt-4">
-			<button type="button" [disabled]="$apiKey() === '' || $systemPrompt() === '' || $prompt() === ''" (click)="execPrompt()">Try Prompt</button>
+			<button type="button" [disabled]="$apiKey() === '' || $prompt() === '' || $question() === ''" (click)="execPrompt()">Try Prompt</button>
 		</div>
 
 		<div class="d-flex align-items-stretch justify-content-between mt-4 vh-100 w-100">
-			<div>
-				<h2>System Prompt</h2>
-				<textarea 
-					class="form-control h-50"
-					[ngModel]="$systemPrompt()"
-					(ngModelChange)="updateSystemPrompt($event)"	
-				></textarea>
-			</div>
 			<div>
 				<h2>Prompt</h2>
 				<textarea 
 					class="form-control h-50"
 					[ngModel]="$prompt()"
 					(ngModelChange)="updatePrompt($event)"	
+				></textarea>
+			</div>
+			<div>
+				<h2>Question</h2>
+				<textarea 
+					class="form-control h-50"
+					[ngModel]="$question()"
+					(ngModelChange)="updateQuestion($event)"	
 				></textarea>
 			</div>
 			<div>
