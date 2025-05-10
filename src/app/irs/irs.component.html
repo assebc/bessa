@@ -4,14 +4,14 @@
     <input 
       type="number"
       class="w-50"
-      [ngClass]="{ 'mb-4': $beforeTaxesSalary() >= irsTable(0)[0][0]}"
+      [ngClass]="{ 'mb-4': $beforeTaxesSalary() >= irsTable(0)[0][0] || $beforeTaxesSalary() === 0}"
       placeholder="Insert your salary (€)"
       [min]="irsTable(0)[0][0]"
-      [ngModel]="$beforeTaxesSalary()" 
+      [ngModel]="$beforeTaxesSalary() === 0 ? undefined : $beforeTaxesSalary() " 
       (ngModelChange)="updateBeforeTaxesSalary($event)" />
 
-    @if($beforeTaxesSalary() < irsTable(0)[0][0]){
-      <span class="text-danger mb-4 text-align-start w-50">Before taxes salary is a minimum of {{irsTable(0)[0][0]}}</span>
+    @if($beforeTaxesSalary() < irsTable(0)[0][0] && $beforeTaxesSalary() !== 0){
+      <span class="text-danger mb-4 text-align-start w-50">Before taxes salary is a minimum of {{irsTable(0)[0][0]}}€</span>
     }
 
     <ng-select

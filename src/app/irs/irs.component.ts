@@ -15,7 +15,7 @@ export class IRSComponent {
   readonly irsTable = (R: number) => IRSTable(R);
 
   readonly $irsJovemYear = signal<number | undefined>(undefined);
-  readonly $beforeTaxesSalary = signal<number>(this.irsTable(0)[0][0]);
+  readonly $beforeTaxesSalary = signal<number>(0);
   readonly $afterTaxesSalary = signal<number>(this.irsTable(0)[0][0]);
   readonly $irsTaxes = signal<number | undefined>(undefined);
   readonly $ssTaxes = signal<number | undefined>(undefined);
@@ -33,7 +33,7 @@ export class IRSComponent {
     const IRSRow = this.getIRSTableRow();
     const [_, TMM, downPayment, TMMax] = IRSRow;
 
-    let afterTaxesSalary = this.$beforeTaxesSalary();
+    let afterTaxesSalary = this.$beforeTaxesSalary()!;
     const r1 = afterTaxesSalary * TMM;
     const r2 = r1 - downPayment;
     const rPercentage = r2 / afterTaxesSalary;
