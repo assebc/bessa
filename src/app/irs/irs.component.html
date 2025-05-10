@@ -3,7 +3,7 @@
     <h1 class="mb-4">Calculate after taxes salary 2025</h1>
     <input 
       type="number"
-      class="w-50"
+      class="w-75"
       [ngClass]="{ 'mb-4': $beforeTaxesSalary() >= irsTable(0)[0][0] || $beforeTaxesSalary() === 0}"
       placeholder="Insert your salary (€)"
       [min]="irsTable(0)[0][0]"
@@ -11,11 +11,11 @@
       (ngModelChange)="updateBeforeTaxesSalary($event)" />
 
     @if($beforeTaxesSalary() < irsTable(0)[0][0] && $beforeTaxesSalary() !== 0){
-      <span class="text-danger mb-4 text-align-start w-50">Before taxes salary is a minimum of {{irsTable(0)[0][0]}}€</span>
+      <span class="text-danger mb-4 text-align-start w-75">Before taxes salary is a minimum of {{irsTable(0)[0][0]}}€</span>
     }
 
     <ng-select
-      class="ng-select-hide-values ng-select-options-sm w-50 mb-2"
+      class="ng-select-hide-values ng-select-options-sm w-75 mb-2"
       placeholder="Select IRS Jovem year"
       [hideSelected]="true"
       [items]="irsJovem"
@@ -27,18 +27,18 @@
         <span>{{ item }} Year</span>
       </ng-template>
     </ng-select>
-    <span class="w-50 mb-4">If no year selected it will be calculated without it!</span>
+    <span class="w-75 mb-4">If no year selected it will be calculated without it!</span>
 
     <button 
       type="button"
-      class="w-50"
+      class="w-75"
       (click)="this.$irsJovemYear() ? calculateIRSJovem() : calculateIRS()"
     >
      CALCULATE
     </button>
 
     @if(!!$ssTaxes() && $irsTaxes() !== undefined) {
-      <div class="d-flex w-50 mt-4 flex-column">
+      <div class="d-flex w-75 mt-4 flex-column">
         <span>Salary before taxes: {{ $beforeTaxesSalary() }}€</span>
         <span>IRS Taxes: {{ $irsTaxes() }}€</span>
         <span>SS Taxes: {{ $ssTaxes() }}€</span>
