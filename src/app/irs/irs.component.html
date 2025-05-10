@@ -8,7 +8,7 @@
       placeholder="Insert your salary (€)"
       [min]="irsTable(0)[0][0]"
       [ngModel]="$beforeTaxesSalary() === 0 ? undefined : $beforeTaxesSalary() " 
-      (ngModelChange)="updateBeforeTaxesSalary($event)" />
+      (blur)="updateBeforeTaxesSalary($event)" />
 
     @if($beforeTaxesSalary() < irsTable(0)[0][0] && $beforeTaxesSalary() !== 0){
       <span class="text-danger mb-4 text-align-start w-75">Before taxes salary is a minimum of {{irsTable(0)[0][0]}}€</span>
@@ -32,6 +32,7 @@
     <button 
       type="button"
       class="w-75"
+      [disabled]="$beforeTaxesSalary() < irsTable(0)[0][0]"
       (click)="this.$irsJovemYear() ? calculateIRSJovem() : calculateIRS()"
     >
      CALCULATE

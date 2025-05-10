@@ -3,6 +3,7 @@ import { Component, signal } from '@angular/core';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { IRSJovem, IRSJovemTaxes, IRSTable } from './irs.defs';
 import { FormsModule } from '@angular/forms';
+import { RouterLinkWithHref } from '@angular/router';
 
 @Component({
   selector: 'app-irs',
@@ -20,7 +21,9 @@ export class IRSComponent {
   readonly $irsTaxes = signal<number | undefined>(undefined);
   readonly $ssTaxes = signal<number | undefined>(undefined);
 
-  updateBeforeTaxesSalary(salary: number): void {
+  updateBeforeTaxesSalary(event: FocusEvent): void {
+    const target = event.target as HTMLInputElement | null;
+    const salary = target?.value ? +target.value : 0;
     this.$beforeTaxesSalary.set(salary);
     this.clear();
   }
@@ -44,7 +47,7 @@ export class IRSComponent {
     const d = parseFloat((r3 * rPercentage).toFixed(2));
     this.calculateSSTaxes();
     afterTaxesSalary -= (d < 0 ? 0 : d) + this.$ssTaxes()!;
-    console.log(d, afterTaxesSalary, this.$ssTaxes(), this.$beforeTaxesSalary());
+
     this.$irsTaxes.set(d < 0 ? 0 : d);
     this.$afterTaxesSalary.set(afterTaxesSalary);
   }
@@ -62,7 +65,7 @@ export class IRSComponent {
 
     this.calculateSSTaxes();
     afterTaxesSalary -= (d < 0 ? 0 : d) + this.$ssTaxes()!;
-    console.log(d, afterTaxesSalary, this.$ssTaxes(), this.$beforeTaxesSalary());
+
     this.$irsTaxes.set(d < 0 ? 0 : d);
     this.$afterTaxesSalary.set(afterTaxesSalary);
   }
@@ -75,7 +78,7 @@ export class IRSComponent {
   private getIRSTableRow(): number[] {
     const table = this.irsTable(this.$beforeTaxesSalary());
     const rowIndex = table.findIndex((row) => row[0] > this.$beforeTaxesSalary());
-    return table[rowIndex];
+    return table[rowIndex === -1 ? table.length -1 : rowIndex];
   }
 
   private getIRSTaxes(): number {

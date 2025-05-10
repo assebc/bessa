@@ -51,14 +51,16 @@
 
     &:hover {
       transition: ease 0.2s;
-      width: 248px;
-      height: 52px;
       background-color: var(--purple);
       
       * {
         transition: ease 0.2s;
         background-color: var(--purple);
       }
+    }
+
+    &:disabled {
+      background-color: var(--gray);
     }
 
     span {
