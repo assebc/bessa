@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './parking.component.scss'
 })
 export class ParkingComponent {
-  private readonly numberOfSpots = 16;
+  private readonly numberOfSpots = 6;
   readonly $spots = signal<string[]>(Array(this.numberOfSpots).fill(''));
   readonly $isEditing = signal<boolean[]>(Array(this.numberOfSpots).fill(false))
 
