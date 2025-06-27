@@ -10,6 +10,14 @@ export const routes: Routes = [
     loadComponent: () => import('./prompt/prompt.component').then(m => m.PromptComponent)
   },
   {
+    path: 'irs',
+    loadComponent: () => import('./irs/irs.component').then(m => m.IRSComponent)
+  },
+  {
+    path: 'parking',
+    loadComponent: () => import('./parking/parking.component').then(m => m.ParkingComponent)
+  },
+  {
     path: '**',
     redirectTo: ''
   }
