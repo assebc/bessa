@@ -1,0 +1,48 @@
+<div class="privacy-container">
+  <h1>Privacy Policy</h1>
+
+  <section>
+    <h2>{{ policyData.title.information_collect }}</h2>
+    <p [innerText]="policyData.content.information_collect"></p>
+  </section>
+
+  <section>
+    <h2>{{ policyData.title.information }}</h2>
+    <p [innerHTML]="policyData.content.information"></p>
+  </section>
+
+  <section>
+    <h2>{{ policyData.title.data_storage_security }}</h2>
+    <p>{{ policyData.content.data_storage_security }}</p>
+  </section>
+
+  <section>
+    <h2>{{ policyData.title.data_retention }}</h2>
+    <p>{{ policyData.content.data_retention }}</p>
+  </section>
+
+  <section>
+    <h2>{{ policyData.title.privacy }}</h2>
+    <p>{{ policyData.content.privacy }}</p>
+  </section>
+
+  <section>
+    <h2>{{ policyData.title.rights }}</h2>
+    <p>{{ policyData.content.rights }}</p>
+  </section>
+
+  <section>
+    <h2>{{ policyData.title.services }}</h2>
+    <p [innerHTML]="policyData.content.services"></p>
+  </section>
+
+  <section>
+    <h2>{{ policyData.title.policy }}</h2>
+    <p>{{ policyData.content.policy }}</p>
+  </section>
+
+  <section>
+    <h2>{{ policyData.title.contact }}</h2>
+    <p [innerText]="policyData.content.contact"></p>
+  </section>
+</div>
