@@ -47,6 +47,7 @@ export class IRSComponent {
     const d = parseFloat((r3 * rPercentage).toFixed(2));
     this.calculateSSTaxes();
     afterTaxesSalary -= (d < 0 ? 0 : d) + this.$ssTaxes()!;
+    afterTaxessalary = Number(afterTaxesSalary.toFixed(2))
 
     this.$irsTaxes.set(d < 0 ? 0 : d);
     this.$afterTaxesSalary.set(afterTaxesSalary);
@@ -65,7 +66,8 @@ export class IRSComponent {
 
     this.calculateSSTaxes();
     afterTaxesSalary -= (d < 0 ? 0 : d) + this.$ssTaxes()!;
-
+    afterTaxessalary = Number(afterTaxesSalary.toFixed(2))
+    
     this.$irsTaxes.set(d < 0 ? 0 : d);
     this.$afterTaxesSalary.set(afterTaxesSalary);
   }
